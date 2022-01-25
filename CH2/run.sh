@@ -1,6 +1,6 @@
 # g++ -o reference reference.cpp;
 # ./reference
 
-g++ -o const const.cpp;
+g++ -std=c++11 -o type type.cpp;
 echo "========= Begin running ========="
-./const
+./type

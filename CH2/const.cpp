@@ -64,6 +64,18 @@ int main() {
     d7p3 = &d5;
     std::cout << d7p3 << std::endl;
 
+    // 5. constant expression are compile time constants
+    int a;
+    std::cin >> a;
+    const int b = a; // b is const but is not known at compile time
+    std::cout << b << std::endl;
+
+    // constexpr int c = b; // illegal
+    constexpr int c = 1; // constexpr could be inited from literal types
+    constexpr int d = (c + c) * (c + c); // constexpr could be inited from constexpr
+
+    constexpr int *e = nullptr; // const pointer, top level const
+    const int *f = nullptr; // pointer to const, low level const
 
     return 0;
 }
