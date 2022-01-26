@@ -65,7 +65,17 @@ int main() {
     // auto &i12 = i, *i13 = &ci; // compile error: i12 is int&, i13 is prt to const int
 
     // 4. decltype
+    const int ci1 = 0, &rci1 = ci1;
+    decltype(ci1) x = 1; // x is const int, top level const is kept
+    decltype(rci1) y = x; // y is const int&, binding to x
 
+    int ii = 42, *pp = &ii, &rr = ii;
+    decltype(rr) aa = ii; // rr is int&, so aa is int&
+    decltype(rr + 0) bb; // result of expr: rr + 0 could not be on lhs of assignment, so bb is int
+    int c = 43;
+    decltype(*pp) cc = c; // result of expr *cc could be on lhs of assignment, so cc is int& not int, must be inited
+    decltype(ii) dd; // var ii is not treated as expr, so dd is int
+    decltype((ii)) ee = c; // (ii) is expr, and its result could be on lhs, so ee is int&
 
     return 0;
 }
