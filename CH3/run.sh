@@ -1,3 +1,3 @@
-g++ -std=c++11 -o vector vector.cpp;
+g++ -std=c++11 -o array array.cpp;
 echo "========= Begin running ========="
-./vector
+./array
