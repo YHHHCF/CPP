@@ -30,3 +30,18 @@ void print_args(initializer_list<int> l) {
         cout << *it << endl;
     }
 }
+
+void dosth(int &a, int &b) {
+    cout << "dosth non const: " << (a + b) << endl;
+    return;
+}
+
+void dosth(const int &a, const int &b) {
+    cout << "dosth const: " << (a * b) << endl;
+    return;
+}
+
+void dosth(const int &a, int &b) {
+    cout << "dosth half const: " << (a - b) << endl;
+    return;
+}
