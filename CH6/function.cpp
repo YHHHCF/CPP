@@ -8,3 +8,25 @@ size_t count_calls() {
     cout << &ctr << endl; // same var with same address
     return ++ctr;
 }
+
+void arguments(int *a, int &b, int c) {
+    *a += 1;
+    b += 1;
+    c += 1;
+}
+
+void reset(int &i) {
+    i = 0;
+    return;
+}
+
+void reset(int *i) {
+    *i = 0;
+    return;
+}
+
+void print_args(initializer_list<int> l) {
+    for (auto it  = l.begin(); it != l.end(); ++it) {
+        cout << *it << endl;
+    }
+}
