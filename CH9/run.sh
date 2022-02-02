@@ -1,4 +1,4 @@
 echo "======== Begin compiling ========"
-g++ -std=c++11 -o sequential sequential.cpp;
+g++ -std=c++11 -o adaptor adaptor.cpp;
 echo "========= Begin running ========="
-./sequential
+./adaptor
