@@ -18,7 +18,7 @@ int main() {
     cout << f2() << endl;
 
     // 2. argument passing
-    auto f3 = [](int i1, int i2) { return i1 > i2; };
+    auto f3 = [](int i1, int i2) -> bool { return i1 > i2; };
     cout << f3(1, 2) << ", " << f3(2, 1) << endl;
 
     // as a predicate
@@ -41,7 +41,7 @@ int main() {
     cout << &a << ": " << a << endl;
     cout << &b << ": " << b << endl;
 
-    // capture a and b by copying
+    // capture a and b by copying value
     auto f4 = [a, b](){
         cout << &a << ": " << a << endl;
         cout << &b << ": " << b << endl;
@@ -49,13 +49,64 @@ int main() {
 
     f4();
 
-    // capture a and b by referencing
+    // capture a and b by reference
     auto f5 = [&a, &b](){
         cout << &a << ": " << a << endl;
         cout << &b << ": " << b << endl;
     };
 
     f5();
+
+    // implicit capture (compiler infers what to capture)
+    // capture by copy
+    auto f6 = [=](){
+        cout << &a << ": " << a << endl;
+        cout << &b << ": " << b << endl;
+    };
+    f6();
+
+    // capture by reference
+    auto f7 = [&](){
+        cout << &a << ": " << a << endl;
+        cout << &b << ": " << b << endl;
+    };
+    f7();
+
+    // mixed, a by value and b by ref
+    auto f8 = [=, &b](){
+        cout << &a << ": " << a << endl;
+        cout << &b << ": " << b << endl;
+    };
+    f8();
+
+    // mixed, a by ref and b by value
+    auto f9 = [&, b](){
+        cout << &a << ": " << a << endl;
+        cout << &b << ": " << b << endl;
+    };
+    f9();
+
+    // 4. modify the captured value
+    int i = 10;
+    // auto f10 = [i](){
+    //     ++i; // compiler error
+    //     cout << i << endl;
+    // };
+
+    auto fa = [i]() mutable {
+        cout << i << endl;
+        ++i;
+    };
+
+    auto fb = [&i]() mutable {
+        cout << i << endl;
+        ++i;
+    };
+
+    i = 2;
+    fa(); // i is captured at lambda creation time by value, so 10 now
+    fb(); // &i is captured at lambda creation time by ref, so 2 now
+    cout << i << endl;
 
     return 0;
 }
