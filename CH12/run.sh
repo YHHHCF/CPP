@@ -1,4 +1,4 @@
 echo "======== Begin compiling ========"
-g++ -std=c++11 smart_ptrs.cpp StrBlob.cpp -o smart_ptrs;
+g++ -std=c++11 allocator.cpp -o allocator;
 echo "========= Begin running ========="
-./smart_ptrs
+./allocator
