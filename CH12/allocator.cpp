@@ -44,6 +44,7 @@ int main() {
     // 4. deallocate memory
     // p and n must match one call to allocate()
     alloc.deallocate(p, n);
+    cout << p << endl;
     while(q != p_end) {
         cout << q << ":" << *q << " "; // undefined
         ++q;
