@@ -1,4 +1,4 @@
 echo "======== Begin compiling ========"
-g++ -std=c++11 HasPtrPtr.cpp -o HasPtrPtr;
+g++ -std=c++11 StrVec.cpp -o StrVec;
 echo "========= Begin running ========="
-./HasPtrPtr
+./StrVec
