@@ -1,4 +1,4 @@
 echo "======== Begin compiling ========"
-g++ -std=c++11 StrVec.cpp -o StrVec;
+g++ -std=c++11 rvalue.cpp -o rvalue;
 echo "========= Begin running ========="
-./StrVec
+./rvalue

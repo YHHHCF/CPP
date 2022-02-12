@@ -84,10 +84,20 @@ int main() {
     cout << *set_it << endl;
 
     // *set_it = "huang"; // const iterator, cannot modify
-
+    cout << "debug 5" << endl;
     // iterator order is key order, default alphabetically
     for (auto map_it = m1.cbegin(); map_it != m1.cend(); ++ map_it) {
         cout << map_it->first << ", " << map_it->second << endl;
+    }
+
+    map<int, int> m;
+    m[1] = 2;
+    m[2] = 3;
+    ++m[2];
+    m[0] = 9;
+    m[6] = 10;
+    for (auto it = m.cbegin(); it != m.cend(); ++it) {
+        cout << it->first << ", " << it->second << endl;
     }
 
     // 6. operations
@@ -148,7 +158,12 @@ int main() {
     cout << mulmap.count("erbao") << endl; // #of key repeats
 
     // 7. unordered container (use if no key order, better performance)
-    unordered_map<string, int> umap(m1);
+    unordered_map<string, int> umap;
+    umap["erbao"] = 1;
+    umap["huang"] = 2;
+    for (auto kv : umap) {
+        cout << kv.first << ": " << kv.second << endl;
+    }
 
     return 0;
 }

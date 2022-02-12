@@ -7,10 +7,18 @@ using std::cout; using std::endl; using std::pair;
 std::allocator<string> StrVec::alloc;
 
 void StrVec::push_back(const string &s) {
-    cout << "push_back called" << endl;
+    cout << "push_back copy: " << s << endl;
     chk_n_alloc();
     // copy construct since parameter is const ref
     alloc.construct(first_free++, s);
+}
+
+void StrVec::push_back(string &&s) {
+    cout << "push_back move: " << s << endl;
+    chk_n_alloc();
+    // s is an rvalue ref, but itself is an lvalue
+    // std::move(s) gets an rvalue
+    alloc.construct(first_free++, std::move(s));
 }
 
 pair<string*, string*> StrVec::alloc_n_copy \
@@ -33,7 +41,7 @@ void StrVec::free() {
 }
 
 StrVec::StrVec(const StrVec &s) {
-    cout << "Copy Constructor called" << endl;
+    cout << "Copy constructor called" << endl;
     auto newdata = alloc_n_copy(s.begin(), s.end());
     elements = newdata.first;
     first_free = newdata.second;
@@ -48,6 +56,31 @@ StrVec &StrVec::operator=(const StrVec &rhs) {
     first_free = data.second;
     cap = data.second;
 
+    return *this;
+}
+
+StrVec::StrVec(StrVec &&s) noexcept :
+    elements(s.elements), first_free(s.first_free), cap(s.cap) {
+    cout << "Move constructor called" << endl;
+    s.elements = nullptr;
+    s.first_free = nullptr;
+    s.cap = nullptr;
+}
+
+StrVec &StrVec::operator=(StrVec &&rhs) noexcept {
+    if (this != &rhs) {
+        cout << "Move assignment operator called" << endl;
+        free(); // free existing elements
+        elements = rhs.elements;
+        first_free = rhs.first_free;
+        cap = rhs.cap;
+
+        rhs.elements = nullptr;
+        rhs.first_free = nullptr;
+        rhs.cap = nullptr;
+    } else {
+        cout << "Move assignment operator called on self" << endl;
+    }
     return *this;
 }
 
@@ -71,8 +104,12 @@ void StrVec::reallocate() {
     }
     free(); // safe to desctruct old memory after move
     elements = newdata;
-    first_free = dest;
+    first_free = dest;  
     cap = elements + newcapacity;
+}
+
+void StrVec::print_addr() {
+    cout << elements << ", " << first_free << ", " << cap << endl;
 }
 
 int main() {
@@ -86,6 +123,23 @@ int main() {
     StrVec sv2 = sv1; // copy constructor
     StrVec sv3;
     sv3 = sv2; // copy assignment operator
+
+    StrVec sv4(std::move(StrVec())); // move constructor
+    string name = "erbao";
+    sv4.push_back(name); // calls copy version of push_back
+    sv4.push_back("huang"); // calls move version of push_back
+
+    StrVec sv5;
+    sv5 = std::move(sv4); // move assignment operator is called since std::move returns a rvalue
+    cout << &sv5 << ", " << &sv4 << endl; // different address
+    sv4.print_addr(); // null ptrs
+    sv5.print_addr(); // stealed from sv4
+
+    sv5 = std::move(sv5); // move assignment operator called on self
+    sv5.print_addr(); // nothing changes
+
+    sv5 = sv5; // copy assignment operator on self
+    sv5.print_addr(); // address changed (new allocation and copy happened)
 
     cout << "=====program end=====" << endl;
     return 0;

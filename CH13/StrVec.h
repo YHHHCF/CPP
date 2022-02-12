@@ -9,16 +9,20 @@ class StrVec {
 public:
     StrVec() :
         elements(nullptr), first_free(nullptr), cap(nullptr) {
-            cout << "Constructor called" << endl;
-        }
+        cout << "Constructor called" << endl;
+    }
     StrVec(const StrVec&); // copy constructor
-    StrVec &operator=(const StrVec&);
+    StrVec &operator=(const StrVec&); // copy assignment operator
+    StrVec(StrVec&&) noexcept; // move constructor
+    StrVec &operator=(StrVec &&) noexcept; // move assignment operator
     ~StrVec();
-    void push_back(const string&);
+    void push_back(const string&); // copy and push
+    void push_back(string&&); // move to push
     size_t size() const { return first_free - elements; }
     size_t capacity() const { return cap - elements; }
     string *begin() const { return elements; }
     string *end() const { return first_free; }
+    void print_addr();
 
 private:
     static std::allocator<string> alloc;
