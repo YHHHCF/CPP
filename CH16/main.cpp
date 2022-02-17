@@ -4,6 +4,19 @@
 
 using std::cout; using std::endl;
 
+template <typename T, typename... Args>
+void print_args(const T &t) {
+    cout << "The last one: " << t << endl;
+}
+
+template <typename T, typename... Args>
+void print_args(const T &t, const Args&... rest) {
+    cout << "This one: " << t << endl;
+    cout << "Remaining " << sizeof...(Args) << endl;
+    // cout << "Remaining " << sizeof...(rest) << endl; // also works
+    print_args(rest...); // call recursively using rest args
+}
+
 int main() {
     // 1. function template
 
@@ -20,6 +33,10 @@ int main() {
     Blob<int> ia1;
     Blob<int> ia2 = {1, 2, 3};
     Blob<string> name = {"erbao", "huang"};
+
+    // 3. variadic templates
+    print_args(1, 2, "erbao", "huang", 10.0);
+    print_args(11);
 
     return 0;
 }
