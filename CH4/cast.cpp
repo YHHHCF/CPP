@@ -29,6 +29,7 @@ int main() {
 
     int n2 = 7;
     int *n2p = &n2;
+    // const int *n2pc = n2p;
     const int *n2pc = const_cast<const int*>(n2p);
     // *n2pc = 8; // low level const, cannot modify
     int *n3p = const_cast<int*>(n2pc);

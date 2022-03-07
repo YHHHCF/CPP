@@ -3,8 +3,8 @@
 
 using namespace std;
 
-void print_vec(vector<int> vec) {
-    for (auto i : vec) {
+void print_vec(vector<int> &vec) {
+    for (auto &i : vec) {
         cout << i << " ";
     }
     cout << endl;
@@ -14,8 +14,8 @@ void print_vec(vector<int> vec) {
 // we want to pass the reference to the arg instead of a copy
 void print_vec_addr(vector<int> &vec) {
     cout << "========print_vec_addr_start========" << endl;
-    for (int i  = 0; i < vec.size(); ++i) {
-        cout << &vec[i] << endl;
+    for (auto &i : vec) {
+        cout << &i << endl;
     }
     cout << "=========print_vec_addr_end=========" << endl;
 }
@@ -26,7 +26,7 @@ int main() {
     vector<int> v3(v1); // copy each value
     vector<int> v4 = v3; // copy each value
     vector<int> v5(10, 4); // 10 fours
-    vector<int> v6(5); // 10 zeros
+    vector<int> v6(5); // 5 zeros
     vector<int> v7;
     for (int i = 0; i < 5; ++i) {
         v7.push_back(i);

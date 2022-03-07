@@ -15,7 +15,7 @@ int main() {
 
     // cbegin(), cend() returns const iterator
     for (auto it = name.cbegin(); it < name.cend(); it += 3) {
-        // (*it) = tolower(*it); // compile error
+        // (*it) = tolower(*it); // compile error because it is ptr to const
         cout << (*it) << endl;
     }
     return 0;

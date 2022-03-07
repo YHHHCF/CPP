@@ -11,8 +11,8 @@ int main() {
     s1.isbn();
     s2.isbn();
 
-    Screen screen1;
-    const Screen screen2;
+    Screen screen1(3, 5, 'c');
+    const Screen screen2(4, 6, 'b');
 
     screen1.display(cout); // overload non-const version
     screen2.display(cout); // overload const version

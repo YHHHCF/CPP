@@ -37,6 +37,7 @@ int main() {
         b1.print_size();
         b2.print_size();
         b1.print_ref_cnt(); // 2
+        cout << &b1 << ", " << &b2 << endl; // different obj that holds the same smart ptr
     }
     b1.print_addr();
     b1.print_size();
@@ -102,7 +103,7 @@ int main() {
     // 6. weak_ptr to prevent memory leak
     auto p5_1 = make_shared<int>(51);
     weak_ptr<int> p5_2(p5_1);
-    cout << p5_1 << ", " << p5_2.lock() << endl;
+    cout << p5_1 << ", " << p5_2.lock() << endl; // lock() yields the address
 
     // this returns p5_1's ref cnt, weak_ptr does not increase ref cnt
     cout << p5_2.use_count() << endl;
@@ -113,7 +114,7 @@ int main() {
     p5_1.reset(); // release memory even though 2 weak ptrs points it, no memory leak will happen
     cout << p5_1 << ", " << p5_2.lock() << ", " << p5_3.lock() << endl; // null after release
     cout << p5_2.use_count() << endl; // null has 0 ref cnt
-    // cout << p5_1 << ", " << p5_2 << endl;
+    // cout << p5_2 << endl; // compile error, must use lock() to get the address
 
     return 0;
 }

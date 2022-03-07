@@ -4,7 +4,7 @@
 # seperate compile and link
 g++ -std=c++11 -c main.cpp;
 g++ -std=c++11 -c function.cpp;
-g++ -std=c++11 main.o function.o -o main;
+g++ -std=c++11 main.o function.o -o prog;
 
 echo "========= Begin running ========="
-./main
+./prog

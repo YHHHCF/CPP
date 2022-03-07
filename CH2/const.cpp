@@ -76,6 +76,11 @@ int main() {
 
     constexpr int *e = nullptr; // const pointer, top level const
     const int *f = nullptr; // pointer to const, low level const
+    int ef = 77;
+    // e = &ef; // compile error, top level const ptr cannot be reassigned
+    f = &ef;
+    std::cout << e << std::endl;
+    std::cout << f << std::endl;
 
     return 0;
 }

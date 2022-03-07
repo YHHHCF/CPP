@@ -16,6 +16,7 @@ void print_args(initializer_list<int> l);
 void dosth(int &a, int &b);
 void dosth(const int &a, const int &b);
 void dosth(const int &a, int &b);
+void dosth(int &a, int &b, int &c);
 
 //functions that differ only in their return type cannot be overloaded
 // int dosth(int &a, int &b);

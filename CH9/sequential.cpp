@@ -40,7 +40,7 @@ int main() {
 
     // 2. insert
     vector<int>::iterator it1 = v1.begin() + 1;
-    // insert before that iterator
+    // insert to that iterator and the previous element moves back
     // returned value points to inserted value
     it1 = v1.insert(it1, -1);
     print_vector(v1, "v1");

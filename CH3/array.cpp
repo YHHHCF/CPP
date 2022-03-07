@@ -57,11 +57,11 @@ int main() {
         }
     }
 
-    // // row is just int*
+    // row is just int*
     // for (auto row : ndarr) {
-    //     for (auto item : row) { // compile error
-    //         cout << item << endl;
-    //     }
+        // for (auto item : row) { // compile error
+        //     cout << item << endl;
+        // }
     // }
 
 

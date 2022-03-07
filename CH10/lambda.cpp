@@ -11,8 +11,7 @@ void print_vec(const vector<int> &vec) {
 
 int main() {
     // 1. lambda is a piece of callable code
-    // can ignore param and return
-    auto f1 = [] { return 3; };
+    auto f1 = [] { return 3; }; // no param and auto deduce return type
     auto f2 = []() -> int { return 4; };
     cout << f1() << endl;
     cout << f2() << endl;
@@ -57,7 +56,7 @@ int main() {
 
     f5();
 
-    // implicit capture (compiler infers what to capture)
+    // implicit capture (compiler infers what variables to capture)
     // capture by copy
     auto f6 = [=](){
         cout << &a << ": " << a << endl;
@@ -98,14 +97,21 @@ int main() {
         ++i;
     };
 
-    auto fb = [&i]() mutable {
+    // mutable keyword is needed for arg passed by value, not for arg passed by ref
+    auto fb1 = [&i]() {
+        cout << i << endl;
+        ++i;
+    };
+
+    auto fb2 = [&i]() mutable {
         cout << i << endl;
         ++i;
     };
 
     i = 2;
     fa(); // i is captured at lambda creation time by value, so 10 now
-    fb(); // &i is captured at lambda creation time by ref, so 2 now
+    fb1(); // &i is captured at lambda creation time by ref, so 2 now
+    fb2();
     cout << i << endl;
 
     return 0;

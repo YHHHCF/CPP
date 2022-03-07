@@ -3,9 +3,9 @@ using namespace std;
 
 int main() {
     // 1. allocate memory for slots
-    allocator<int> alloc; // can allocate string
+    allocator<int> alloc; // can allocate int
 
-    // p points to 10 unconstructed strings;
+    // p points to 10 unconstructed int;
     int n = 10;
     auto const p = alloc.allocate(n); // a pointer
     auto const p_end = p + n;
@@ -26,6 +26,7 @@ int main() {
     cout << endl;
 
     // 3. destory or deconstruct each slot
+    
     // the line below compiles but it is wrong to destroy
     // an object that is not constructed
     // alloc.destroy(q);

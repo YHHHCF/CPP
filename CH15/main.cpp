@@ -1,6 +1,6 @@
 #include <iostream>
-// including header files declares Quote and Bulk_quote
-// needs to declare both to use them
+// including header files declares Quote and Bulk_quote...
+// needs to declare all to use them
 #include "Quote.h"
 #include "Disc_quote.h"
 #include "Bulk_quote.h"

@@ -13,7 +13,7 @@ int main() {
     int &&rri2 = i1 * 2;
     // int &&rri3 = rri2; // rvalue ref rri2 is an lvalue
     
-    // std::move tells compiler rri2 wants to be treated as rvalue
+    // std::move yields the rvalue of lvalue rri2
     int &&rri3 = std::move(rri2);
     cout << &ri2c << ", " << &rri2 << ", " << &rri3 << endl;
 

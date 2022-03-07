@@ -15,7 +15,7 @@ int main() {
     *pi = 2;
     std::cout << i << std::endl;
 
-    int *&rpi = pi; // rpi is an alia of pi, pointer could be referenced
+    int *&rpi = pi; // rpi is an alias of pi, pointer could be referenced
     std::cout << rpi << ", " << *rpi << std::endl;
 
     int *p2;
@@ -30,10 +30,13 @@ int main() {
     void *vp;
     vp = &i;
     std::cout << vp << std::endl;
+    // *vp = 4; // cannot assign through void ptr, cannot dereference void ptr
+    *(static_cast<int*>(vp)) = 9;
+    std::cout << *(static_cast<int*>(vp)) << ", " << *pi << std::endl; // cannot 
 
-    float j = 3.0;
+    float j = 3.1;
     vp = &j; // could be assigned pointer of any type
-    std::cout << vp << std::endl;
+    std::cout << vp << ", " << *(static_cast<float*>(vp)) << std::endl;
 
     return 0;
 }

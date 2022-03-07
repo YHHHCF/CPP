@@ -2,7 +2,7 @@
 #define BULK_QUOTE_H
 
 #include <iostream>
-// needs to declare base class by including its header
+// needs to declare base classes' headers
 #include "Quote.h"
 #include "Disc_quote.h"
 using std::cout; using std::endl;

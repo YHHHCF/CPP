@@ -4,7 +4,7 @@
 using namespace std;
 
 void print_list(const list<int> &l) {
-    for (const auto i : l) {
+    for (const auto &i : l) {
         cout << i << " ";
     }
     cout << endl;
@@ -12,6 +12,10 @@ void print_list(const list<int> &l) {
 
 bool isLarger(int i1, int i2) {
     return i1 > i2;
+}
+
+bool isSmaller(int i1, int i2) {
+    return i1 < i2;
 }
 
 bool isNegative(int i) {
@@ -23,14 +27,14 @@ int main() {
     list<int> l2 = {-1, -3, -2, 0, 8, 9};
 
     l1.sort(isLarger);
-    l2.sort(isLarger);
+    l2.sort(isSmaller);
     print_list(l1);
     print_list(l2);
 
     l1.merge(l2, isLarger);
     print_list(l1);
 
-    l1.sort();
+    l1.sort(isSmaller);
     print_list(l1);
 
     l1.reverse();
@@ -39,7 +43,7 @@ int main() {
     l1.remove_if(isNegative);
     print_list(l1);
 
-    l1.remove(5);
+    l1.remove(3); // 3 is the element not index
     print_list(l1);
 
     list<int> l3 = {1, 1, 2, 2, 3};

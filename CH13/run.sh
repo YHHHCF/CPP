@@ -1,4 +1,4 @@
 echo "======== Begin compiling ========"
-g++ -std=c++11 rvalue.cpp -o rvalue;
+g++ -std=c++11 rvalue.cpp -o prog;
 echo "========= Begin running ========="
-./rvalue
+./prog

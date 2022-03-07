@@ -32,7 +32,7 @@ public:
     }
 
     // derived classes will have the same isbn()
-    // this is know at compile time
+    // this is known at compile time
     string isbn() const { return bookNo; }
 
     // virtual keyword indicates derived classes will override net_price()

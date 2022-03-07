@@ -1,3 +1,3 @@
-g++ -std=c++11 -o array array.cpp;
+g++ -std=c++11 -o prog string.cpp;
 echo "========= Begin running ========="
-./array
+./prog

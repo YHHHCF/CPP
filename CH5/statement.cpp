@@ -4,7 +4,7 @@ using namespace std;
 
 int main() {
     // 1. switch statement
-    int flag = 22;
+    int flag = 2;
 
     switch (flag) {
         case 1:
@@ -23,6 +23,11 @@ int main() {
             // int x = 6; // cannot init here, compile error
             ival = 2;
             jval = 3;
+            cout << ival << ", " << jval << endl;
+            break;
+        case 3:
+            ival = 22;
+            jval = 33;
             cout << ival << ", " << jval << endl;
             break;
         default:
@@ -46,7 +51,7 @@ int main() {
 
     // 3. goto statement
     goto label;
-    // int m = 55; // compile error, cannot init here
+    // int m = 55; // compile error: jump bypasses variable initialization
     int m;
 
 label:

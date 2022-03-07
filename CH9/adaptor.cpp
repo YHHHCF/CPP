@@ -8,8 +8,8 @@ using namespace std;
 
 void pop_and_print_stack(stack<int> &s) {
     while(!s.empty()) {
-        cout << s.top() << " "; // remove not return
-        s.pop(); // return not remove
+        cout << s.top() << " "; // return back element but not remove
+        s.pop(); // pop back element but not return
     }
     cout << endl;
 }
@@ -36,7 +36,7 @@ int main() {
     }
 
     cout << q.front() << ", " << q.back() << endl;
-    q.pop();
+    q.pop(); // pop front
     cout << q.front() << ", " << q.back() << endl;
 
     return 0;

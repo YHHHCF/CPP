@@ -8,6 +8,7 @@ vector<tuple<string, int>> make_vec(const vector<string> &names) {
     vector<tuple<string, int>> v;
     for (size_t i = 0; i < names.size(); ++i) {
         v.push_back(make_tuple(names[i], static_cast<int>(i)));
+        v.push_back({names[i], static_cast<int>(i * 10)});
     }
 
     return v;

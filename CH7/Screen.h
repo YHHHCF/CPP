@@ -30,7 +30,7 @@ public:
         return *this;
     }
 
-    // inplicit inline
+    // implicit inline
     char get() const {
         return contents[cursor];
     }
@@ -50,7 +50,7 @@ private:
 
     // const member function
     void do_display(ostream &os) const {
-        os << contents;
+        os << contents << endl;
     }
 };
 

@@ -22,7 +22,7 @@ int main() {
     i3 = 5;
     std::cout << i << ", " << ri << ", " << ri2 << ", " << i3 << std::endl;
 
-    ri = i3; // changes the object not reference binding
+    ri = i3; // copy value to i/ri/ri2, but ri won't refer to i3
     std::cout << i << ", " << ri << ", " << ri2 << ", " << i3 << std::endl;
 
     i3 = 6;

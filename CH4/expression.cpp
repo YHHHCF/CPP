@@ -41,6 +41,5 @@ int main() {
     cout << &x << ", " << &y << ", " << &z << endl;
     cout << &(x++, --y, ++z) << endl; // evaluates left to right, yields right
 
-
     return 0;
 }

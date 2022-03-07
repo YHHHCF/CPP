@@ -45,6 +45,7 @@ int main() {
     set<string> s2 = {"erbao", "huang", "erbao"};
     print_set(s2, "s2");
 
+    // multiset could contain multiple items with the same value
     multiset<string> s2m = {"erbao", "huang", "erbao"};
     print_set(s2m, "s2m");
 
@@ -57,7 +58,7 @@ int main() {
     // 3. pair
     pair<string, int> p1("erbao", 200);
     cout << p1.first << ", " << p1.second << endl;
-    
+
     pair<string, int> p2 = make_pair("erbao", 100); 
     cout << p2.first << ", " << p2.second << endl;
 
@@ -141,7 +142,7 @@ int main() {
     cout << m1["aaa"] << ", " << m1.size() << endl;
     m1["aaa"] = 3;
     cout << m1["aaa"] << ", " << m1.size() << endl;
-    m1["aaaaaaa"]; // this addes the pair
+    m1["aaaaaaa"]; // this adds to map
     cout << m1.size() << endl;
 
     cout << m1.at("aaa") << ", " << m1.at("aaaaaaa") << endl;
@@ -152,7 +153,7 @@ int main() {
     // if not exists return end() iterator
     cout << *(iset.find(3)) << endl;
     cout << &(*(--iset.find(7))) << ", " \
-         << &(*(--iset.end())) << endl;
+         << &(*(--iset.end())) << ": " << *(--iset.find(7)) << endl;
 
     cout << iset.count(1) << endl;
     cout << mulmap.count("erbao") << endl; // #of key repeats
@@ -161,7 +162,12 @@ int main() {
     unordered_map<string, int> umap;
     umap["erbao"] = 1;
     umap["huang"] = 2;
-    for (auto kv : umap) {
+    for (auto &kv : umap) {
+        cout << kv.first << ": " << kv.second << endl;
+        if (kv.first == "erbao") kv.second = 11;
+    }
+
+    for (auto &kv : umap) {
         cout << kv.first << ": " << kv.second << endl;
     }
 
